@@ -3,29 +3,25 @@ import { Scene } from "phaser";
 export class Game extends Scene {
   constructor() {
     super("Game");
+
+    this.mouseY = 0.5;
+    this.player = null;
   }
 
   create() {
     this.cameras.main.setBackgroundColor(0x000000);
 
-    this.add
-      .text(
-        512,
-        384,
-        "Make something fun!\nand share it with us:\nsupport@phaser.io",
-        {
-          fontFamily: "Arial Black",
-          fontSize: 38,
-          color: "#ffffff",
-          stroke: "#000000",
-          strokeThickness: 8,
-          align: "center",
-        }
-      )
-      .setOrigin(0.5);
+    this.player = this.add.rectangle(10, 384, 20, 60, 0xffffff).setOrigin(0.5);
+    this.add.rectangle(1014, 384, 20, 60, 0xffffff).setOrigin(0.5);
 
-    this.input.once("pointerdown", () => {
-      this.scene.start("GameOver");
-    });
+    this.game.canvas.onmousemove = (e) => {
+      this.mouseY =
+        (e.clientY - this.game.canvas.offsetTop) /
+        this.game.canvas.offsetHeight;
+    };
+  }
+
+  update() {
+    this.player.setY(this.mouseY * this.game.config.height);
   }
 }
