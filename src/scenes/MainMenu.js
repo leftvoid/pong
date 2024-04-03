@@ -6,17 +6,32 @@ export class MainMenu extends Scene {
   }
 
   create() {
-    this.add.image(512, 384, "background");
-
-    this.add.image(512, 300, "logo");
+    this.cameras.main.setBackgroundColor(0x000000);
 
     this.add
-      .text(512, 460, "Main Menu", {
-        fontFamily: "Arial Black",
+      .text(512, 300, "PONG", {
+        fontStyle: "500",
+        fontFamily: "DM Mono",
+        fontSize: 128,
+        color: "#ffffff",
+        align: "center",
+      })
+      .setOrigin(0.5);
+
+    this.add
+      .text(512, 410, "CLICK TO PLAY", {
+        fontFamily: "DM Mono",
         fontSize: 38,
         color: "#ffffff",
-        stroke: "#000000",
-        strokeThickness: 8,
+        align: "center",
+      })
+      .setOrigin(0.5);
+
+    this.add
+      .text(512, 500, "◁∅", {
+        fontFamily: "monospace",
+        fontSize: 18,
+        color: "#ffffff",
         align: "center",
       })
       .setOrigin(0.5);
